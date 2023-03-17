@@ -12,7 +12,7 @@ class MovieController extends Controller
      */
     public function index()
     {
-        return view('pages.movies.index');
+        return view('pages.movies.index', ['movies' => Movie::all()]);
     }
 
     /**
@@ -28,7 +28,8 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Movie::create($request->all());
+        return redirect()->back()->with('success', 'Movie registered with success');
     }
 
     /**
@@ -44,7 +45,7 @@ class MovieController extends Controller
      */
     public function edit(Movie $movie)
     {
-        return view('pages.movies.index', compact('movie'));
+        return view('pages.movies.edit', compact('movie'));
     }
 
     /**
@@ -52,7 +53,8 @@ class MovieController extends Controller
      */
     public function update(Request $request, Movie $movie)
     {
-        //
+        $movie->update($request->all());
+        return redirect()->back()->with('success', 'Movie successfully updated');
     }
 
     /**
@@ -60,6 +62,7 @@ class MovieController extends Controller
      */
     public function destroy(Movie $movie)
     {
-        //
+        $movie->delete();
+        return redirect()->back()->with('success', 'Movie successfully removed');
     }
 }
