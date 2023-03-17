@@ -12,7 +12,7 @@ class RentController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.rentals.index');
     }
 
     /**
@@ -20,7 +20,7 @@ class RentController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.rentals.create');
     }
 
     /**
